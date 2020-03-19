@@ -16,6 +16,7 @@ git clone https://github.com/azure/azure-libraries-for-java
 git clone https://github.com/azure/azure-rest-api-specs
 git clone https://github.com/weidongxu-microsoft/autorest.java
 
+echo 'export PATH=$PATH:~/apache-maven-3.6.3-bin/bin:~/node-v10.19.0-linux-x64/bin' >> ~/.bashrc
 export PATH=$PATH:~/apache-maven-3.6.3-bin/bin:~/node-v10.19.0-linux-x64/bin
 
 cd autorest.java
