@@ -29,6 +29,17 @@ def file_end_newline(lines):
     if lines[-1][-1] != '\n':
         lines[-1] = lines[-1] + '\n'
 
+def fix_license(lines):
+    licenses = ['// Copyright (c) Microsoft Corporation. All rights reserved.\n', '// Licensed under the MIT License.\n\n']
+    if len(lines) > 1 and lines[0].strip() == licenses[0].strip() and lines[1].strip() == licenses[1].strip():
+        return lines
+
+    for i, line in enumerate(lines):
+        if line.strip() == '' or re.match(r'^package\s+[\w\.]+;', line):
+            return licenses + lines[i:]
+    
+    raise Exception('no package line')
+    
 
 # from https://gist.github.com/rodrigosetti/4734557
 def unused_import(lines):
@@ -73,6 +84,7 @@ if __name__ == "__main__":
                 trim_middle_space(lines)
                 file_end_newline(lines)
                 lines = unused_import(lines)
+                lines = fix_license(lines)
 
                 fstream.truncate(0)
                 fstream.seek(0)
