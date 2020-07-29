@@ -3,6 +3,7 @@
 wget https://nodejs.org/dist/v13.11.0/node-v13.11.0-linux-x64.tar.gz
 wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip
 wget https://cdn.azul.com/zulu/bin/zulu11.37.17-ca-jdk11.0.6-linux_amd64.deb
+wget https://cdn.azul.com/zulu/bin/zulu8.48.0.51-ca-jdk8.0.262-linux_amd64.deb
 
 sudo apt install unzip || apt install unzip
 
