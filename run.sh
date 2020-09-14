@@ -15,18 +15,20 @@ sudo dpkg -i zulu11.37.17-ca-jdk11.0.6-linux_amd64.deb || dpkg -i zulu11.37.17-c
 
 git clone https://github.com/azure/azure-sdk-for-java
 git clone https://github.com/azure/azure-rest-api-specs
-git clone https://github.com/weidongxu-microsoft/autorest.java
+git clone https://github.com/azure/autorest.java
 
 echo 'export PATH=$PATH:'$PWD'/apache-maven-3.6.3/bin:'$PWD'/node-v13.11.0-linux-x64/bin' >> ~/.bashrc
 export PATH=$PATH:$PWD/apache-maven-3.6.3/bin:$PWD/node-v13.11.0-linux-x64/bin
 
-cd autorest.java
-git checkout v4_fluentgen
-mvn package -P local
-cd ..
+if [ "X$C" != "X" ]; then
+    cd autorest.java
+    git checkout v4_fluentgen
+    mvn package -P local
+    cd ..
 
-npm install -g autorest
-npm install -g gulp
+    npm install -g autorest
+    npm install -g gulp
 
-cd azure-sdk-for-java/sdk/management
-npm install
+    cd azure-sdk-for-java/sdk/management
+    npm install
+fi
