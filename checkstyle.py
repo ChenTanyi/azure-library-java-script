@@ -75,15 +75,16 @@ def unused_import(lines):
 if __name__ == "__main__":
     dirname = os.path.join(project_path, 'sdk/resourcemanager/')
     for filename in locate('*.java', dirname):
-        with open(filename, 'r+') as fstream:
-            lines = fstream.readlines()
+        if 'fluent' not in filename:
+            with open(filename, 'r+') as fstream:
+                lines = fstream.readlines()
 
-            trim_middle_space(lines)
-            file_end_newline(lines)
-            lines = unused_import(lines)
-            lines = fix_license(lines)
+                trim_middle_space(lines)
+                file_end_newline(lines)
+                lines = unused_import(lines)
+                lines = fix_license(lines)
 
-            fstream.truncate(0)
-            fstream.seek(0)
-            fstream.write(''.join(lines))
-            print(filename)
+                fstream.truncate(0)
+                fstream.seek(0)
+                fstream.write(''.join(lines))
+                print(filename)
